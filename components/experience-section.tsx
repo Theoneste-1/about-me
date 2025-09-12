@@ -20,7 +20,7 @@ const experiences = [
       "Implemented responsive designs for mobile-first approach",
     ],
     technologies: ["React.js", "Next.js", "Node.js", "TypeScript", "PostgreSQL"],
-    logo: "/company-techhub.png",
+    logo: "/assets/images/exp/logo-1.jpg",
   },
   {
     id: 2,
@@ -37,7 +37,7 @@ const experiences = [
       "Mentored 15+ junior students in cybersecurity fundamentals",
     ],
     technologies: ["Python", "Burp Suite", "OWASP", "Kali Linux", "Wireshark"],
-    logo: "/company-rca.png",
+    logo: "/assets/images/rca.png",
   },
   {
     id: 3,
@@ -71,7 +71,7 @@ const experiences = [
       "Improved lab efficiency by implementing new maintenance procedures",
     ],
     technologies: ["Windows", "Linux", "Hardware Troubleshooting", "Network Setup"],
-    logo: "/company-community.png",
+    logo: "/assets/images/exp/logo-1.jpg",
   },
 ]
 
