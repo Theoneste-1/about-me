@@ -28,7 +28,7 @@ const education = [
       "Software Engineering",
       "Network Security",
     ],
-    logo: "/school-rca.png",
+    logo: "assets/images/rca.png",
   },
   {
     id: 2,
@@ -46,7 +46,7 @@ const education = [
       "Represented school in regional science fair",
     ],
     subjects: ["Mathematics", "Physics", "Chemistry", "Computer Studies", "English", "French"],
-    logo: "/school-gisenyi.png",
+    logo: "assets/images/esg.jpeg",
   },
 ]
 
@@ -104,7 +104,7 @@ export function EducationSection() {
                     <img
                       src={edu.logo || "/placeholder.svg"}
                       alt={edu.institution}
-                      className="w-10 h-10 object-contain"
+                      className="w-full h-full object-cover rounded"
                     />
                   </div>
                   <div className="flex-1">

@@ -54,7 +54,7 @@ const experiences = [
       "Generated $5,000+ in revenue through freelance work",
     ],
     technologies: ["HTML5", "CSS3", "JavaScript", "WordPress", "Shopify"],
-    logo: "/company-freelance.png",
+    logo: "assets/images/freelance.jpg",
   },
   {
     id: 4,
@@ -115,7 +115,7 @@ export function ExperienceSection() {
                         <img
                           src={experience.logo || "/placeholder.svg"}
                           alt={experience.company}
-                          className="w-8 h-8 object-contain"
+                          className="w-full h-full object-cover rounded"
                         />
                       </div>
                       <div className="flex-1">
