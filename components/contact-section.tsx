@@ -2,7 +2,9 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useActionState } from "react"
+import { useFormStatus } from "react-dom"
+import { submitContact } from "@/app/actions"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -26,14 +28,14 @@ const contactInfo = [
   {
     icon: Mail,
     label: "Email",
-    value: "dufitimana.theoneste@gmail.com",
-    href: "mailto:dufitimana.theoneste@gmail.com",
+    value: "dufitimanatheoneste@gmail.com",
+    href: "mailto:dufitimanatheoneste@gmail.com",
   },
   {
     icon: Phone,
     label: "WhatsApp",
     value: "+250 788 123 456",
-    href: "https://wa.me/250788123456",
+    href: "https://wa.me/250786555276",
   },
   {
     icon: MapPin,
@@ -53,61 +55,57 @@ const socialLinks = [
   {
     icon: Github,
     label: "GitHub",
-    username: "@dufitimana-theoneste",
-    href: "https://github.com/dufitimana-theoneste",
+    username: "@Theonste-1",
+    href: "https://github.com/Theoneste-1",
     color: "hover:text-gray-900 dark:hover:text-gray-100",
   },
   {
     icon: Linkedin,
     label: "LinkedIn",
     username: "Dufitimana Theoneste",
-    href: "https://linkedin.com/in/dufitimana-theoneste",
+    href: "https://www.linkedin.com/in/dufitimana-theoneste-78542437a",
     color: "hover:text-blue-600",
   },
   {
     icon: Instagram,
     label: "Instagram",
-    username: "@theoneste_dev",
-    href: "https://instagram.com/theoneste_dev",
+    username: "@theoneste_coach",
+    href: "https://instagram.com/theoneste_coach",
     color: "hover:text-pink-600",
   },
   {
     icon: MessageCircle,
     label: "WhatsApp",
-    username: "+250 788 123 456",
-    href: "https://wa.me/250788123456",
+    username: "+250 786 555 276",
+    href: "https://wa.me/250786555276",
     color: "hover:text-green-600",
   },
 ]
 
+function SubmitButton() {
+  const { pending } = useFormStatus()
+
+  return (
+    <Button type="submit" size="lg" className="w-full gap-2" disabled={pending}>
+      {pending ? (
+        <>
+          <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
+          Sending...
+        </>
+      ) : (
+        <>
+          <Send className="w-4 h-4" />
+          Send Message
+        </>
+      )}
+    </Button>
+  )
+}
+
 export function ContactSection() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const initialState = { message: "", errors: {} }
+  const [state, formAction] = useActionState(submitContact, initialState)
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-
-    // Reset form
-    setFormData({ name: "", email: "", subject: "", message: "" })
-    setIsSubmitting(false)
-
-    // In a real app, you would send the data to your backend
-    console.log("Form submitted:", formData)
-  }
 
   return (
     <section id="contact" className="py-20 bg-card/30">
@@ -131,7 +129,7 @@ export function ContactSection() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form action={formAction} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium mb-2">
@@ -141,11 +139,11 @@ export function ContactSection() {
                       id="name"
                       name="name"
                       type="text"
-                      value={formData.name}
-                      onChange={handleInputChange}
                       placeholder="Your full name"
                       required
+                      defaultValue=""
                     />
+                    {state.errors?.name && <p className="text-red-500 text-xs mt-1">{state.errors.name}</p>}
                   </div>
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium mb-2">
@@ -155,27 +153,12 @@ export function ContactSection() {
                       id="email"
                       name="email"
                       type="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
                       placeholder="your.email@example.com"
                       required
+                      defaultValue=""
                     />
+                    {state.errors?.email && <p className="text-red-500 text-xs mt-1">{state.errors.email}</p>}
                   </div>
-                </div>
-
-                <div>
-                  <label htmlFor="subject" className="block text-sm font-medium mb-2">
-                    Subject
-                  </label>
-                  <Input
-                    id="subject"
-                    name="subject"
-                    type="text"
-                    value={formData.subject}
-                    onChange={handleInputChange}
-                    placeholder="What's this about?"
-                    required
-                  />
                 </div>
 
                 <div>
@@ -185,27 +168,21 @@ export function ContactSection() {
                   <Textarea
                     id="message"
                     name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
                     placeholder="Tell me about your project or idea..."
                     rows={6}
                     required
+                    defaultValue=""
                   />
+                  {state.errors?.message && <p className="text-red-500 text-xs mt-1">{state.errors.message}</p>}
                 </div>
 
-                <Button type="submit" size="lg" className="w-full gap-2" disabled={isSubmitting}>
-                  {isSubmitting ? (
-                    <>
-                      <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
-                      Sending...
-                    </>
-                  ) : (
-                    <>
-                      <Send className="w-4 h-4" />
-                      Send Message
-                    </>
-                  )}
-                </Button>
+                <SubmitButton />
+
+                {state.message && (
+                  <p className={`text-sm ${state.success ? "text-green-500" : "text-red-500"}`}>
+                    {state.message}
+                  </p>
+                )}
               </form>
             </CardContent>
           </Card>

@@ -23,15 +23,16 @@ const resumeHighlights = [
 
 export function ResumeSection() {
   const handleDownloadResume = () => {
-    // In a real app, this would download the actual resume file
-    console.log("Downloading resume...")
-    // You could trigger a download of a PDF file here
+    const link = document.createElement('a')
+    link.href = '/documents/DufitimanaTheoneste_cv.pdf'
+    link.download = 'DufitimanaTheoneste_cv.pdf'
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
   }
 
   const handleViewResume = () => {
-    // In a real app, this would open the resume in a new tab
-    console.log("Opening resume preview...")
-    // You could open a PDF viewer or a dedicated resume page
+    window.open('/documents/DufitimanaTheoneste_cv.pdf', '_blank')
   }
 
   return (
@@ -58,30 +59,13 @@ export function ResumeSection() {
               </CardHeader>
               <CardContent>
                 {/* Resume Preview Image */}
-                <div className="relative group mb-6">
-                  <div className="aspect-[8.5/11] bg-card border-2 border-border rounded-lg overflow-hidden">
-                    <img
-                      src="/resume-preview.png"
-                      alt="Resume Preview"
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                <div className="relative group mb-6 h-[500px]">
+                  <div className="w-full h-full bg-card border-2 border-border rounded-lg overflow-hidden">
+                    <iframe
+                      src="/documents/DufitimanaTheoneste_cv.pdf"
+                      title="Resume Preview"
+                      className="w-full h-full"
                     />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
-                      <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex gap-4">
-                        <Button size="sm" onClick={handleViewResume} className="gap-2">
-                          <Eye className="w-4 h-4" />
-                          View
-                        </Button>
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          onClick={handleDownloadResume}
-                          className="gap-2 bg-transparent"
-                        >
-                          <Download className="w-4 h-4" />
-                          Download
-                        </Button>
-                      </div>
-                    </div>
                   </div>
                 </div>
 

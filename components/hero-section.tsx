@@ -25,9 +25,9 @@ const skills = [
 ]
 
 const socialLinks = [
-  { icon: Github, href: "#", label: "GitHub" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: Mail, href: "mailto:dufitimana.theoneste@example.com", label: "Email" },
+  { icon: Github, href: "https://github.com/Theoneste-1", label: "GitHub" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/dufitimana-theoneste-78542437a", label: "LinkedIn" },
+  { icon: Mail, href: "mailto:dufitimanatheoneste@gmail.com", label: "Email" },
 ]
 
 export function HeroSection() {
@@ -41,7 +41,7 @@ export function HeroSection() {
   if (!mounted) return null
 
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <section id="hero" className="min-h-screen flex items-center justify-center relative ">
       {/* Enhanced Animated Background Elements */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-float"></div>
@@ -138,9 +138,9 @@ export function HeroSection() {
         </ScrollAnimation>
 
         {/* Enhanced Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce-slow">
+        {/* <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce-slow">
           <ArrowDown className="w-6 h-6 text-muted-foreground" />
-        </div>
+        </div> */}
       </div>
     </section>
   )

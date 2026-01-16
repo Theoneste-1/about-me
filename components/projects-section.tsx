@@ -3,7 +3,7 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { ExternalLink, Github, Eye, Shield, Globe, Smartphone, Code2, Lock } from "lucide-react"
+import { ExternalLink, Github, Eye, Shield, Globe, Smartphone, Code2, Lock, Download, Store } from "lucide-react"
 import { useState } from "react"
 
 const projects = [
@@ -84,6 +84,21 @@ const projects = [
     github: "#",
     demo: "#",
     featured: false,
+  },
+  {
+    id: 7,
+    title: "Ndakwizeye Route",
+    description:
+      "A comprehensive transport management system ensuring safety of couriers and shipments. Features real-time tracking, QR scanning, and HR management for drivers and officers.",
+    image: "/assets/images/swift_route.png",
+    technologies: ["React Native", "Expo", "NestJS", "PostgreSQL", "Next.js", "TypeScript"],
+    category: "Mobile",
+    icon: Smartphone,
+    github: "https://github.com/Theoneste-1",
+    demo: "#",
+    appStoreUrl: "#",
+    playStoreUrl: "#",
+    featured: true,
   },
 ]
 
@@ -192,15 +207,44 @@ export function ProjectsSection() {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex gap-2">
-                    <Button variant="outline" size="sm" className="flex-1 gap-2 bg-transparent">
-                      <Github className="w-4 h-4" />
-                      Code
-                    </Button>
-                    <Button size="sm" className="flex-1 gap-2">
-                      <ExternalLink className="w-4 h-4" />
-                      Demo
-                    </Button>
+                  <div className="flex flex-wrap gap-2">
+                    {/* Web Links */}
+                    {project.github && (
+                      <Button variant="outline" size="sm" className="flex-1 gap-2 bg-transparent" asChild>
+                        <a href={project.github} target="_blank" rel="noopener noreferrer">
+                          <Github className="w-4 h-4" />
+                          Code
+                        </a>
+                      </Button>
+                    )}
+                    {project.demo && project.demo !== "#" && (
+                      <Button size="sm" className="flex-1 gap-2" asChild>
+                        <a href={project.demo} target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="w-4 h-4" />
+                          Visit Site
+                        </a>
+                      </Button>
+                    )}
+
+                    {/* Mobile App Links */}
+                    {/* @ts-ignore */}
+                    {project.appStoreUrl && (
+                      <Button size="sm" className="flex-1 gap-2 bg-black hover:bg-zinc-800 text-white" asChild>
+                        <a href={project.appStoreUrl} target="_blank" rel="noopener noreferrer">
+                          <Store className="w-4 h-4" />
+                          App Store
+                        </a>
+                      </Button>
+                    )}
+                    {/* @ts-ignore */}
+                    {project.playStoreUrl && (
+                      <Button size="sm" className="flex-1 gap-2 bg-green-600 hover:bg-green-700 text-white" asChild>
+                        <a href={project.playStoreUrl} target="_blank" rel="noopener noreferrer">
+                          <Download className="w-4 h-4" />
+                          Play Store
+                        </a>
+                      </Button>
+                    )}
                   </div>
                 </CardContent>
               </Card>
