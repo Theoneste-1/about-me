@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "dev": "next dev",
+    "dev": "node api.js && next dev",
     "lint": "next lint",
-    "start": "next start",
+    "start": "node api.js && next start",
     "init-db": "node scripts/init-db.js"
   },
   "dependencies": {
@@ -51,7 +51,7 @@
     "geist": "latest",
     "input-otp": "1.4.1",
     "lucide-react": "^0.454.0",
-    "next": "15.2.4",
+    "next": "15.2.8",
     "next-themes": "latest",
     "react": "^19",
     "react-day-picker": "9.8.0",
