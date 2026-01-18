@@ -16,7 +16,14 @@ const resumeHighlights = [
   "Full-stack development with React, Next.js, and Node.js",
   "Cybersecurity expertise in web application security",
   "Experience with Python, Java, and modern frameworks",
-  "Strong background in database design and management",
+  "Experince with mobile development with React Native and Expo",
+  "Experience with NestJS and PostgreSQL",
+  "Experience with AWS and cloud computing",
+  "Experience with TypeScript and modern JavaScript",
+  "Experience with Software Deployment and CI/CD",
+  "Experience with Docker, and Kubernetes containerization",
+  "Experience with Git and version control",
+  "Experience with database design and management",
   "Proven track record in team collaboration and leadership",
   "Continuous learning and professional development",
 ]
@@ -24,15 +31,15 @@ const resumeHighlights = [
 export function ResumeSection() {
   const handleDownloadResume = () => {
     const link = document.createElement('a')
-    link.href = '/documents/DufitimanaTheoneste_cv.pdf'
-    link.download = 'DufitimanaTheoneste_cv.pdf'
+    link.href = '/documents/DUFITIMANA Theoneste Professional Resume.pdf'
+    link.download = 'DUFITIMANA Theoneste Professional Resume.pdf'
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
   }
 
   const handleViewResume = () => {
-    window.open('/documents/DufitimanaTheoneste_cv.pdf', '_blank')
+    window.open('/documents/DUFITIMANA Theoneste Professional Resume.pdf', '_blank')
   }
 
   return (
@@ -62,7 +69,7 @@ export function ResumeSection() {
                 <div className="relative group mb-6 h-[500px]">
                   <div className="w-full h-full bg-card border-2 border-border rounded-lg overflow-hidden">
                     <iframe
-                      src="/documents/DufitimanaTheoneste_cv.pdf"
+                      src="/documents/DUFITIMANA Theoneste Professional Resume.pdf"
                       title="Resume Preview"
                       className="w-full h-full"
                     />
